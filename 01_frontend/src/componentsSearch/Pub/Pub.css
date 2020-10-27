@@ -1,0 +1,76 @@
+.Pub {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 16.66rem;
+    margin: 0 .5rem 2.3rem .5rem;
+    background-color: rgb(220, 231, 247);
+    border-top-right-radius: 40px;
+    padding: 3px;
+  }
+  
+  .Pub .image-container {
+    height: 16.66rem;
+    margin-bottom: 1rem;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+
+  }
+  
+  .Pub h2 {
+    margin-bottom: .5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .Pub-information {
+    display: flex;
+    justify-content: space-between;
+  
+  }
+  
+  .Pub-information p {
+    font-size: .88rem;
+    font-weight: 300;
+    line-height: 1rem;
+  }
+  
+  .Pub-address {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .Pub-reviews {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+  }
+  
+  .Pub-reviews h3 {
+    color: #CCA353;
+    font-weight: 600;
+  }
+  
+  .Pub-reviews .rating {
+    font-size: .88rem;
+    line-height: 1rem;
+  }
+
+ 
+ button {
+    border-radius: 4px;
+    padding: .72rem 1.7rem;
+    background-color: #1a7ae8;
+    color: #ffffff;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 5px;
+    border: none
+  }
+  
+button a:hover {
+    cursor: pointer;
+    background-color: #a7874b;
+  }

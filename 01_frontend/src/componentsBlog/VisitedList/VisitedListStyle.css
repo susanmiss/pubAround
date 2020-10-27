@@ -1,0 +1,11 @@
+.VisitedList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 16.66rem;
+    margin: 0 .5rem 2.3rem .5rem;
+    background-color: rgb(220, 231, 247);
+    border-top-right-radius: 40px;
+    padding: 3px;
+  }
+  
