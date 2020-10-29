@@ -133,7 +133,10 @@ exports.signout = (req, res) => {
     return res.json({ message: 'Admin Signout Success!' })
 }
 
-
+//getDistance:
+// exports.getDistance = (req, res) => {
+//     fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${this.state.latitudeUser},${this.state.longitudeUser}&destinations=40.6655101%2C-73.891889699999982%7C&key=AIzaSyALUiIOx7GDeZ2LZNseEaVsjvZHkvac4Nw`,
+// }
 
 // >>>>>>> CODE BELLOW IS A MORE SIMPLE AND STREIGTH FOWARD WAY, WITHOUT findById >>>>>>>>>>
 

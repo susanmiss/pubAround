@@ -2,6 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import VisitedSinglePage from '../../componentsBlog/VisitedSinglePage/VisitedSinglePage';
 import PubStyle from '../Pub/Pub.css';
+import PubList from '../PubsList/PubsList'
+
+//MAPSkey=AIzaSyB_ClwN7j27R7YtbFpPS5BuJOIyQIZo9_M
+
 
 
 class Pub extends React.Component {
@@ -11,13 +15,32 @@ class Pub extends React.Component {
         this.state = {
             visited: false,
             posts: [],
-            post: ''
+            post: '',
+            latitude: '',
+            longitude: '',
+            addressUser: '',
+            miles: '',
+            distance: null
         }
 
-        this.getMiles = this.getMiles.bind(this)
-        // this.checkVisited = this.checkVisited.bind(this)
-        // this.getPost = this.getPost.bind(this)
     }
+
+    position = () => {
+        navigator.geolocation.getCurrentPosition(
+            position => this.setState({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            }, newState => {
+                return (
+                    console.log('Latitude: ', position.coords.latitude),
+                    console.log('Longitude: ', position.coords.longitude)
+
+                )
+            })
+        );
+
+    }
+
 
     isAuthenticated = () => {
         if (typeof window == 'undefined') {
@@ -29,15 +52,6 @@ class Pub extends React.Component {
             return false
         }
     }
-
-    getMiles(mts) {
-        const miles = mts / 1600;
-        return miles.toFixed(2);
-    }
-
-    handleChange = (event, _id) => {
-        this.setState({ visited: !this.state.visited })
-    };
 
 
     loadPosts = () => {
@@ -57,31 +71,41 @@ class Pub extends React.Component {
             });
     };
 
-    //***********************?????? */
 
 
+    getDistance = () => {
 
-    // getPost = (posts) => {
-    //     posts = this.state.posts
-    //     // posts.map(post => {
-    //     //     if (this.state.post.title == this.props.pub.name) {
-    //     //         console.log(this.state.post.title)
-    //     //     }
-    //     //})
-    //     // console.log(posts)
+        fetch(`https://thingproxy.freeboard.io/fetch/https://maps.googleapis.com/maps/api/directions/json?origin=${this.props.user.latitudeUser},${this.props.user.longitudeUser}&destination=${this.props.pub.latPub},${this.props.pub.longPub}&alternatives=true&key=AIzaSyALUiIOx7GDeZ2LZNseEaVsjvZHkvac4Nw`)
+            .then(response => response.json())
+            .then((distance) => this.setState({
+                distance: distance,
+                miles: distance.routes[0].legs[0].distance.text
+            }))
+            .catch(error => console.error(error))
+    }
 
+    // showDistance() {
+    //     return <p>{this.state.distance.rows[0].elements[0].distance.text} from you</p>
     // }
+
 
     componentDidMount() {
         this.loadPosts()
-        // this.getPost()
+        this.position()
+        // this.getDistance()
     }
+
+
+
 
 
     render() {
 
         return (
-            <div className="Pub">
+
+
+            <div className="Pub" >
+                {this.getDistance()}
                 <div className="image-container">
                     <img src={this.props.pub.imageSrc} alt={this.props.pub.name} />
                 </div>
@@ -92,11 +116,11 @@ class Pub extends React.Component {
                         <p>{this.props.pub.city}  {this.props.pub.state}</p>
                         <p>{this.props.pub.price}</p>
 
-
-
                     </div>
                     <div className="Pub-reviews">
-                        <p>{this.getMiles(this.props.pub.distance)}miles from you</p>
+
+                        <p> {this.state.miles ? this.state.miles + ' from you' : ''} </p>
+
                     </div>
                 </div>
                 <div>
@@ -134,7 +158,7 @@ class Pub extends React.Component {
                     }
                 </div>
 
-            </div>
+            </div >
         )
     }
 }

@@ -1,10 +1,9 @@
 
-
-const apiKey = 'JOAYveJVOUdH_pw0qNkB1KgJt_N4dxXpXaARPmtqGMGh7UMMSmkuX5HjQPJwjtAZs-oTBMbD6QAk955KSWk1-Ep4GecDpXL5dmuwTKBu41xf0Dc-rzB8BW33YOaOX3Yx';
+const apiKey = 'h9sugkVZnqpnwvpLmpssUUn75OAVlRXQFvNOOgy1dAS44RWhDdIh-ANCDdV3CAZabDM2Aesoks4aGRsgbkoLYXX3DcaVM83HZkQB3_Npm58s188BO1d9GpGrRIiYX3Yx';
 
 const Yelp = {
     search(term, location, sortBy) {
-        return fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=PUB&location=${location}&sort_by=${sortBy}`,
+        return fetch(`https://thingproxy.freeboard.io/fetch/https://api.yelp.com/v3/businesses/search?term=PUB&location=${location}&sort_by=${sortBy}`,
             {
                 headers: {
                     Authorization: `Bearer ${apiKey}`,
@@ -29,8 +28,8 @@ const Yelp = {
                                 price: business.price,
                                 distance: business.distance,
                                 zipCode: business.location.zip_code,
-                                latitude: business.coordinates.latitude,
-                                longitude: business.coordinates.longitude,
+                                latPub: business.coordinates.latitude,
+                                longPub: business.coordinates.longitude,
                             }
                         });
                     }
@@ -41,3 +40,5 @@ const Yelp = {
 }
 
 export default Yelp;
+
+
