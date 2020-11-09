@@ -1,7 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-// import VisitedListStyle from '../VisitedList/VisitedListStyle';
-
 
 
 class VisitedSinglePage extends React.Component {
@@ -47,7 +44,7 @@ class VisitedSinglePage extends React.Component {
                 <h1>Single Page:</h1>
                 <p>{post.title}</p>
                 <p>{post.body}</p>
-                <img src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`} />
+                <img src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`} alt="pub" />
             </div>
         )
     }

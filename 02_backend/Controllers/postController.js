@@ -133,65 +133,7 @@ exports.signout = (req, res) => {
     return res.json({ message: 'Admin Signout Success!' })
 }
 
-//getDistance:
-// exports.getDistance = (req, res) => {
-//     fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${this.state.latitudeUser},${this.state.longitudeUser}&destinations=40.6655101%2C-73.891889699999982%7C&key=AIzaSyALUiIOx7GDeZ2LZNseEaVsjvZHkvac4Nw`,
-// }
-
-// >>>>>>> CODE BELLOW IS A MORE SIMPLE AND STREIGTH FOWARD WAY, WITHOUT findById >>>>>>>>>>
-
-//SHOW ALL POSTS:
-// exports.getPosts = (req, res) => {
-//     Post.find((err, posts) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             res.json(posts);
-//         }
-//     });
-// }
-
-
-//CREATE A POST:
-// exports.createPost = (req, res) => {
-//     let post = new Post(req.body);
-//     post.save()
-//         .then(post => {
-//             // res.status(200).json({ 'post': 'new pub added successfully' })
-//             res.json(post)
-//         })
-//         .catch(err => {
-//             console.log(err)
-//             res.status(400).send('adding new pub failed');
-//         });
-// }
 
 
 
-// DELETE A POST:
-// exports.deletePost = (req, res, next) => {
-//     let id = req.params.id;
-//     Post.findByIdAndRemove(id, (err, post) => {
-//         if (err) res.status(400).send('Cannot delete')
-//         res.json({ "message": "Post deleted ;(" });
-//     });
-// }
-
-
-//UPDATE A POST:
-// exports.updatePost = (req, res) => {
-//     Post.findById(req.params.id, (err, post) => {
-//         if (!post)
-//             res.status(404).send("post not found");
-//         else
-//             post.title = req.body.title;
-//         post.body = req.body.body;
-//         post.save().then(post => {
-//             res.json('Post updated!');
-//         })
-//             .catch(err => {
-//                 res.status(400).send("Update not possible");
-//             });
-//     });
-// }
 

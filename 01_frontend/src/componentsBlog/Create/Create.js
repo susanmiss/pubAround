@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom'
-// import VisitedListStyle from '../VisitedList/VisitedListStyle';
+import { Redirect } from 'react-router-dom'
 
 
 class Create extends React.Component {
@@ -30,8 +29,6 @@ class Create extends React.Component {
         this.setState({ error: "" });
         const value = name === "photo" ? event.target.files[0] : event.target.value;
 
-        // const fileSize = name === "photo" ? event.target.files[0].size : 0;
-
         this.postData.set(name, value);
         this.setState({ [name]: value });
 
@@ -56,8 +53,6 @@ class Create extends React.Component {
         event.preventDefault();
         this.setState({ redirectToHome: true });
 
-        // if (this.isValid()) {
-
         const token = this.isAuthenticated().token;
 
         this.create(token, this.postData).then(data => {
@@ -70,7 +65,6 @@ class Create extends React.Component {
                 });
             }
         });
-        // }
     };
 
     componentDidMount() {
@@ -80,7 +74,7 @@ class Create extends React.Component {
 
 
     render() {
-        const { title, body, photo, redirectToHome } = this.state;
+        const { title, body, redirectToHome } = this.state;
         if (redirectToHome) {
             return <Redirect to={'/visited'} />
         }

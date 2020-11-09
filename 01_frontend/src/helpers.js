@@ -31,7 +31,6 @@ export const getUser = () => {
 
 
 //remove token from session storage
-
 export const logout = (next) => {
     if (window !== 'undefined') {
         sessionStorage.removeItem('token', JSON.stringify(response.data.token))

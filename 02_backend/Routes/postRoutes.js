@@ -1,7 +1,6 @@
 const express = require('express');
 const { getPosts, createPost, getSinglePost, postById, deletePost, updatePost, photo, login, requireSignin, signout } = require('../Controllers/postController');
 
-//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiU3VzYW4iLCJpYXQiOjE2MDMzNzAwMjIsImV4cCI6MTYzNDkwNjAyMn0.rRptY6x3hJo5-maU5a6ZHUxAMi7r0vzm7Nr6nWI240c
 const router = express.Router();
 
 

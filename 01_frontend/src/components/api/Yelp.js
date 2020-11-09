@@ -3,7 +3,7 @@ const apiKey = 'h9sugkVZnqpnwvpLmpssUUn75OAVlRXQFvNOOgy1dAS44RWhDdIh-ANCDdV3CAZa
 
 const Yelp = {
     search(term, location, sortBy) {
-        return fetch(`https://thingproxy.freeboard.io/fetch/https://api.yelp.com/v3/businesses/search?term=PUB&location=${location}&sort_by=${sortBy}`,
+        return fetch(`https://thingproxy.freeboard.io/fetch/https://api.yelp.com/v3/businesses/search?term=PUB&location=${location}&sort_by=${sortBy}&limit=4`,
             {
                 headers: {
                     Authorization: `Bearer ${apiKey}`,

@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import VisitedSinglePage from '../../componentsBlog/VisitedSinglePage/VisitedSinglePage';
 import PubStyle from '../Pub/Pub.css';
-import PubList from '../PubsList/PubsList'
 
-//MAPSkey=AIzaSyB_ClwN7j27R7YtbFpPS5BuJOIyQIZo9_M
 
 
 
@@ -30,15 +27,8 @@ class Pub extends React.Component {
             position => this.setState({
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
-            }, newState => {
-                return (
-                    console.log('Latitude: ', position.coords.latitude),
-                    console.log('Longitude: ', position.coords.longitude)
-
-                )
             })
         );
-
     }
 
 
@@ -75,7 +65,7 @@ class Pub extends React.Component {
 
     getDistance = () => {
 
-        fetch(`https://thingproxy.freeboard.io/fetch/https://maps.googleapis.com/maps/api/directions/json?origin=${this.props.user.latitudeUser},${this.props.user.longitudeUser}&destination=${this.props.pub.latPub},${this.props.pub.longPub}&alternatives=true&key=AIzaSyALUiIOx7GDeZ2LZNseEaVsjvZHkvac4Nw`)
+        fetch(`https://thingproxy.freeboard.io/fetch/https://maps.googleapis.com/maps/api/directions/json?origin=${this.props.user.latitudeUser},${this.props.user.longitudeUser}&destination=${this.props.pub.latPub},${this.props.pub.longPub}&alternatives=true&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
             .then(response => response.json())
             .then((distance) => this.setState({
                 distance: distance,
@@ -84,28 +74,18 @@ class Pub extends React.Component {
             .catch(error => console.error(error))
     }
 
-    // showDistance() {
-    //     return <p>{this.state.distance.rows[0].elements[0].distance.text} from you</p>
-    // }
-
-
     componentDidMount() {
         this.loadPosts()
         this.position()
-        // this.getDistance()
+        this.getDistance()
     }
-
-
-
 
 
     render() {
 
         return (
 
-
             <div className="Pub" >
-                {this.getDistance()}
                 <div className="image-container">
                     <img src={this.props.pub.imageSrc} alt={this.props.pub.name} />
                 </div>
@@ -148,7 +128,7 @@ class Pub extends React.Component {
 
                 <div>
                     {this.state.posts.map((post, i) => {
-                        if (post.title == this.props.pub.name) {
+                        if (post.title === this.props.pub.name) {
                             return (
                                 <Link to={`/visited/${post._id}`} key={i}>{post.title} has been visited by Pub Around. Check here!</Link>
                             )

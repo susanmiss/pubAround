@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
-// import VisitedListStyle from '../VisitedList/VisitedListStyle';
+import { Link } from "react-router-dom";
 
 
 class VisitedList extends Component {
@@ -29,7 +28,6 @@ class VisitedList extends Component {
             });
     };
 
-    //***********************?????? */
 
     componentDidMount() {
         this.loadPosts();
@@ -83,7 +81,7 @@ class VisitedList extends Component {
                                 <Link to={`/visited/${post._id}`} style={{ color: "black" }}>
                                     <p>{post.title}</p>
                                     <p>{post.body}</p>
-                                    <img src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`} />
+                                    <img src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`} alt="pub" />
                                 </Link>
                             </div>
                             {this.isAuthenticated() && (
@@ -95,8 +93,6 @@ class VisitedList extends Component {
                             <hr />
 
                         </div>
-
-
                     )
                 })}</div>
             </div>

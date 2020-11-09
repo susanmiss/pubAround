@@ -1,29 +1,7 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import VisitedSinglePage from '../../componentsBlog/VisitedSinglePage/VisitedSinglePage'
-// import MapComponent from '../Map/Map';
-// import CurrentLocation from '../Map/CurrentLocation';
-
-
-
-const apiKey = 'h9sugkVZnqpnwvpLmpssUUn75OAVlRXQFvNOOgy1dAS44RWhDdIh-ANCDdV3CAZabDM2Aesoks4aGRsgbkoLYXX3DcaVM83HZkQB3_Npm58s188BO1d9GpGrRIiYX3Yx';
-
-{/* <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1c2Bj57tJ9ny4EJafFlWeosNf3qyYg9M&callback=initMap"
-    type="text/javascript"></script> */}
-
-//const mapKey = 'AIzaSyB_ClwN7j27R7YtbFpPS5BuJOIyQIZo9_M';
-const mapKey = 'AIzaSyALUiIOx7GDeZ2LZNseEaVsjvZHkvac4Nw'
-
-const mapStyles = {
-    width: '100%',
-    height: '100%'
-};
-
 
 
 class SinglePagePub extends React.Component {
-
-
     constructor(props) {
         super(props)
 
@@ -38,20 +16,15 @@ class SinglePagePub extends React.Component {
             photos: []
         }
 
-
         this.searchSinglePage = this.searchSinglePage.bind(this);
         this.position = this.position.bind(this);
-
-
     }
-
-
 
     searchSinglePage(id) {
         fetch(`https://thingproxy.freeboard.io/fetch/https://api.yelp.com/v3/businesses/${id}`,
             {
                 headers: {
-                    Authorization: `Bearer ${apiKey}`
+                    Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
                 }
             }
         )
@@ -79,15 +52,8 @@ class SinglePagePub extends React.Component {
             position => this.setState({
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
-            }, newState => {
-                return (
-                    console.log('Latitude: ', position.coords.latitude),
-                    console.log('Longitude: ', position.coords.longitude)
-
-                )
             })
         );
-
     }
 
 
@@ -95,7 +61,7 @@ class SinglePagePub extends React.Component {
         return (
             <div>
                 {/* {JSON.stringify(this.props)} */}
-                <img src={this.state.pub.image_url} />
+                <img src={this.state.pub.image_url} alt="pub" />
 
 
                 <p> {this.state.pub.name}</p>
@@ -115,7 +81,7 @@ class SinglePagePub extends React.Component {
                     this.state.photos.map((photo, i) => {
                         return (
 
-                            <img key={i} src={photo} style={{ width: '20%' }} />
+                            <img key={i} src={photo} style={{ width: '20%' }} alt="pub" />
                         )
                     })
                 }
@@ -124,11 +90,8 @@ class SinglePagePub extends React.Component {
                 <iframe
                     title={this.state.pub.name}
                     style={{ width: '80%', height: '600px', border: 0, frameborder: "0" }}
-                    src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyALUiIOx7GDeZ2LZNseEaVsjvZHkvac4Nw&origin=${this.state.latitude},${this.state.longitude}&destination=${this.state.pub.name}`} >
+                    src={`https://www.google.com/maps/embed/v1/directions?key=${process.env.REACT_APP_GOOGLE_API_KEY}&origin=${this.state.latitude},${this.state.longitude}&destination=${this.state.pub.name}`} >
                 </iframe>
-
-
-
 
             </div>
         )

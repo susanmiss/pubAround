@@ -3,7 +3,7 @@ import './App.css';
 import PubsList from '../../componentsSearch/PubsList/PubsList';
 import SearchBar from '../../componentsSearch/SearchBar/SearchBar';
 import Yelp from '../api/Yelp';
-import getUserPosition from '../api/getUser';
+
 
 
 class App extends React.Component {
@@ -24,7 +24,6 @@ class App extends React.Component {
 
 
   searchYelp(term, location, attributes) {
-    //alert(`Searching Yelp with ${term}, ${location}, ${sortBy}`);
     Yelp.search(term, location, attributes).then(
       pubs => { this.setState({ pubs: pubs }) }
 
@@ -39,13 +38,6 @@ class App extends React.Component {
           latitudeUser: position.coords.latitude,
           longitudeUser: position.coords.longitude,
         }
-
-
-      }, newState => {
-        return (
-          console.log('User Latitude: ', position.coords.latitude),
-          console.log('User Longitude: ', position.coords.longitude)
-        )
       })
     )
 
@@ -60,7 +52,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <SearchBar searchYelp={this.searchYelp} />
-        <PubsList pubs={this.state.pubs} user={this.state.user} user={this.state.user} />
+        <PubsList pubs={this.state.pubs} user={this.state.user} />
       </div>
     )
   }

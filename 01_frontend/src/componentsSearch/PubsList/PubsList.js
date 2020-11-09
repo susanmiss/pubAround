@@ -1,7 +1,6 @@
 import React from 'react';
 import PubsListStyle from './PubsList.css';
 import Pub from '../Pub/Pub.js';
-import User from '../User/User'
 
 
 
@@ -14,10 +13,10 @@ class PubsList extends React.Component {
 
                 {this.props.pubs.map(pub => {
                     return (
+                        <div key={pub.id}>
+                            <Pub pub={pub} key={pub.id} user={this.props.user} />
 
-                        <Pub pub={pub} key={pub.id} user={this.props.user} />
-
-
+                        </div>
                     );
 
                 })}
